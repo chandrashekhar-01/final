@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Explorer | Gamified Tour Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header/Navigation -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Hyderabad Explorer</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#places" class="nav-link"><i class="fas fa-landmark"></i> Places</a></li>
+                    <li><a href="#game" class="nav-link"><i class="fas fa-gamepad"></i> Game</a></li>
+                    <li><a href="#planner" class="nav-link"><i class="fas fa-rupee-sign"></i> Budget Planner</a></li>
+                    <li><a href="#leaderboard" class="nav-link"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/40" alt="User" id="user-avatar">
+                <span id="user-points">0 pts</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <h1>Discover Hyderabad Like Never Before</h1>
+                    <p>Turn your city exploration into an exciting game with rewards and challenges!</p>
+                    <div class="cta-buttons">
+                        <a href="#game" class="btn primary">Start Exploring</a>
+                        <a href="#planner" class="btn secondary">Plan Your Trip</a>
+                    </div>
+                </div>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-camera-retro"></i>
+                        <h3>Capture & Earn</h3>
+                        <p>Upload photos from historical places to earn points and badges</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Smart Planner</h3>
+                        <p>Get personalized recommendations based on your budget</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Compete & Win</h3>
+                        <p>Climb the leaderboard and unlock special rewards</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Places Section -->
+            <section id="places" class="section">
+                <h2 class="section-title">Explore Hyderabad's Treasures</h2>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="historical">Historical</button>
+                    <button class="filter-btn" data-filter="modern">Modern</button>
+                    <button class="filter-btn" data-filter="tourist">Tourist Favorites</button>
+                </div>
+                <div class="places-grid" id="places-container">
+                    <!-- Places will be loaded via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Game Section -->
+            <section id="game" class="section">
+                <h2 class="section-title">Complete Challenges & Earn Points</h2>
+                <div class="game-container">
+                    <div class="challenges">
+                        <h3>Current Challenges</h3>
+                        <div class="challenges-list" id="challenges-list">
+                            <!-- Challenges will be loaded via JavaScript -->
+                        </div>
+                    </div>
+                    <div class="upload-area">
+                        <h3>Upload Your Photos</h3>
+                        <div class="upload-box" id="upload-box">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop your photos here or click to browse</p>
+                            <input type="file" id="photo-upload" accept="image/*" multiple>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progress-bar"></div>
+                            <span id="progress-text">0%</span>
+                        </div>
+                        <button class="btn primary" id="submit-photos" disabled>Submit for Verification</button>
+                    </div>
+                </div>
+                <div class="badges-container">
+                    <h3>Your Badges</h3>
+                    <div class="badges-grid" id="badges-container">
+                        <!-- Badges will be loaded via JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget Planner Section -->
+            <section id="planner" class="section">
+                <h2 class="section-title">Smart Budget Planner</h2>
+                <div class="planner-container">
+                    <div class="budget-form">
+                        <h3>Plan Your Visit</h3>
+                        <div class="form-group">
+                            <label for="place-select">Select Place:</label>
+                            <select id="place-select">
+                                <option value="">-- Select a place --</option>
+                                <!-- Options will be loaded via JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget-amount">Your Budget (₹):</label>
+                            <input type="number" id="budget-amount" min="100" step="100" value="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="visit-type">Visit Type:</label>
+                            <select id="visit-type">
+                                <option value="solo">Solo</option>
+                                <option value="family">Family</option>
+                                <option value="friends">Friends</option>
+                                <option value="couple">Couple</option>
+                            </select>
+                        </div>
+                        <button class="btn primary" id="generate-plan">Generate Plan</button>
+                    </div>
+                    <div class="plan-results" id="plan-results">
+                        <div class="placeholder">
+                            <i class="fas fa-search-dollar"></i>
+                            <p>Enter your budget and preferences to get personalized recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leaderboard Section -->
+            <section id="leaderboard" class="section">
+                <h2 class="section-title">Top Explorers</h2>
+                <div class="leaderboard-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-period="weekly">Weekly</button>
+                        <button class="tab-btn" data-period="monthly">Monthly</button>
+                        <button class="tab-btn" data-period="alltime">All Time</button>
+                    </div>
+                    <div class="leaderboard-table">
+                        <div class="table-header">
+                            <span>Rank</span>
+                            <span>Explorer</span>
+                            <span>Points</span>
+                            <span>Badges</span>
+                        </div>
+                        <div class="table-body" id="leaderboard-body">
+                            <!-- Leaderboard will be loaded via JavaScript -->
+                        </div>
+                    </div>
+                    <div class="user-position">
+                        <h3>Your Position</h3>
+                        <div class="position-card" id="user-position">
+                            <!-- User position will be loaded via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hyderabad Explorer</h3>
+                    <p>Making city exploration fun and rewarding for everyone</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#places">Places</a></li>
+                        <li><a href="#game">Game</a></li>
+                        <li><a href="#planner">Planner</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@hyderabadexplorer.com</p>
+                    <p>+91 98765 43210</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Hyderabad Explorer. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Photo Preview Modal -->
+    <div class="modal" id="photo-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Verify Your Photo</h3>
+            <div class="photo-preview" id="photo-preview">
+                <img id="preview-image" src="" alt="Preview">
+            </div>
+            <div class="photo-meta">
+                <div class="form-group">
+                    <label for="photo-place">Place:</label>
+                    <select id="photo-place">
+                        <!-- Options will be loaded via JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="photo-date">Visit Date:</label>
+                    <input type="date" id="photo-date">
+                </div>
+            </div>
+            <button class="btn primary" id="confirm-upload">Confirm Upload</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
